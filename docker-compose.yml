@@ -1,0 +1,8 @@
+# This requires docker-compose 1.6.0 and uses docker engine 1.10+ DNS discovery
+version: '2'
+services:
+  apn_voip:
+    build: .
+    hostname: apn_voip
+    tty: true
+    command: /run.sh
