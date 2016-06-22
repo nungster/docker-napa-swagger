@@ -1,5 +1,14 @@
 #!/bin/bash -ex
 
-cd /app/apn_voip
+echo "Checking for mysql server..."
+while ! mysqladmin -h$DATABASE_HOST -p$DATABASE_PASSWORD ping; do
+  echo "The api_server is unable to ping mysql, trying again." 
+  sleep 5
+done
 
-./keep_it_alive.sh tokens_file.txt
+
+cd /app/api_server
+rake db:reset
+
+#rackup -p 0.0.0.0:9292
+rackup
