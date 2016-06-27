@@ -6,5 +6,5 @@ class HelloApi < Grape::API
       { message: 'Hello Wonderful World, from Mcappface!' }
     end
   end
-
+  add_swagger_documentation
 end

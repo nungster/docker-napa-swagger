@@ -6,9 +6,10 @@ while ! mysqladmin -h$DATABASE_HOST -p$DATABASE_PASSWORD ping; do
   sleep 5
 done
 
+sed -i "s/API_HOST_URL/${API_HOST_URL}/g" public/index.html
 
 cd /app/api_server
 rake db:reset
+rake db:migrate
 
-#rackup -p 0.0.0.0:9292
-rackup
+rackup -p 9292 --host 0.0.0.0
